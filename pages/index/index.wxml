@@ -1,0 +1,25 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="weui-cells__title">选择位置</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view bindtap='chooseLocation' class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__bd">选择位置</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access">({{location1.longitude}},{{location1.latitude}})</view>
+    </view>
+    <view bindtap='getLocation' class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__bd">获取当前位置</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access">({{location2.longitude}},{{location2.latitude}})</view>
+    </view>
+  </view>
+  <button class="weui-btn" type="primary" disabled="{{!(flag1&&flag2)}}" bindtap='calculate'>测距</button>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>
